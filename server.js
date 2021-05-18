@@ -5,17 +5,18 @@ const express = require("express");
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 4000;
 app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
+require("dotenv").config();
 
 // =======================================
 //              DATABASE
 // =======================================
-const dataBaseVar = "feelings";
-const mongoURI = "mongodb://localhost:27017/" + dataBaseVar;
+const dataBaseVar = process.env.DBNAME;
+const mongoURI = process.env.MONGODB_URI + dataBaseVar;
 const db = mongoose.connection;
 
 // =======================================
@@ -46,41 +47,10 @@ app.use("/api", getController);
 //              ROUTES
 // =======================================
 
-/* ===========
-GET ROUTE
-============= */
-//NEW
-
-/* ===========
-POST ROUTE
-============= */
-//CREATE
-
-/* ===========
-GET ROUTE
-============= */
-//SHOW
-
-/* ===========
-GET ROUTE
-============= */
-//INDEX
-
-/* ===========
-PUT ROUTE
-============= */
-//UPDATE
-
-/* ===========
-GET ROUTE
-============= */
-//EDIT
-
-/* ===========
-DELETE ROUTE
-============= */
-//DELETE
-
+//Index
+app.get("/", (req, res) => {
+  res.render("index.ejs");
+});
 // =======================================
 //              LISTENER
 // =======================================
