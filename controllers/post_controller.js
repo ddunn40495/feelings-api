@@ -26,7 +26,7 @@ router.post("/emotion", (req, res) => {
     console.log(
       `This is the emotion you just created ==================================${createdEmotion}================================================`
     );
-    res.json(createdEmotion);
+    res.redirect("/api/all");
   });
 });
 
@@ -36,7 +36,7 @@ router.post("/:emotionID/example", (req, res) => {
     Example.create(req.body, (err, createdExample) => {
       foundEmotion.example.push(createdExample);
       foundEmotion.save((err, data) => {
-        res.json(foundEmotion);
+        res.redirect("/api/all");
       });
     });
   });
