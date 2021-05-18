@@ -33,6 +33,13 @@ db.once("open", () => {
 });
 db.on("error", (err) => console.log(err.message + " is Mongod not running?"));
 db.on("disconnected", () => console.log("mongo disconnected"));
+
+// =======================================
+//          CONTROLLERS
+// =======================================
+const postController = require("./controllers/post_controller");
+app.use("/api", postController);
+
 // =======================================
 //              ROUTES
 // =======================================

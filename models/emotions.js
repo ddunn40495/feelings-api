@@ -3,26 +3,26 @@ const mongoose = require("mongoose");
 const emotionSchema = new mongoose.Schema({
   name: { type: String, required: true },
   description: { type: String, required: true },
-  affirmations: [
+  example: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Affirmations",
+      ref: "Example",
     },
   ],
-  examples: [
+  dougfeels: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Examples",
+      ref: "DougFeel",
     },
   ],
-  solutions: [
+  bullets: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Solutions",
+      ref: "Bullet",
     },
   ],
 });
 
-const Emotions = mongoose.model("Emotions", EmotionSchema);
+const Emotion = mongoose.model("Emotion", emotionSchema);
 
-module.exports = Emotions;
+module.exports = Emotion;
