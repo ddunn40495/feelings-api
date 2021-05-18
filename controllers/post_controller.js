@@ -12,7 +12,8 @@ const express = require("express");
 const router = express.Router();
 const Emotion = require("../models/emotions");
 const Bullet = require("../models/bullets");
-const DougFeel = require("../models/dougfeels");
+
+const DougExample = require("../models/doug_examples");
 const Example = require("../models/examples");
 
 // =========================
@@ -29,11 +30,35 @@ router.post("/emotion", (req, res) => {
   });
 });
 
+//Create Example
+router.post("/:emotionID/example", (req, res) => {
+  Emotion.findById(req.params.emotionID, (err, foundEmotion) => {
+    Example.create(req.body, (err, createdExample) => {
+      foundEmotion.example.push(createdExample);
+      foundEmotion.save((err, data) => {
+        res.json(foundEmotion);
+      });
+    });
+  });
+});
+
 //Create Bullet
-router.post("/emotionID/bullet", (req, res) => {
+router.post("/:emotionID/bullet", (req, res) => {
   Emotion.findById(req.params.emotionID, (err, foundEmotion) => {
     Bullet.create(req.body, (err, createdBullet) => {
-      foundEmotion.comments.push(createdBullet);
+      foundEmotion.bullets.push(createdBullet);
+      foundEmotion.save((err, data) => {
+        res.json(foundEmotion);
+      });
+    });
+  });
+});
+
+//Create DougExample
+router.post("/:emotionID/dougexample", (req, res) => {
+  Emotion.findById(req.params.emotionID, (err, foundEmotion) => {
+    DougExample.create(req.body, (err, createdDougExample) => {
+      foundEmotion.dougExamples.push(createdDougExample);
       foundEmotion.save((err, data) => {
         res.json(foundEmotion);
       });
