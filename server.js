@@ -39,6 +39,8 @@ db.on("disconnected", () => console.log("mongo disconnected"));
 // =======================================
 const postController = require("./controllers/post_controller");
 app.use("/api", postController);
+const getController = require("./controllers/get_controller");
+app.use("/api", getController);
 
 // =======================================
 //              ROUTES

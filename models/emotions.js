@@ -9,10 +9,10 @@ const emotionSchema = new mongoose.Schema({
       ref: "Example",
     },
   ],
-  dougfeels: [
+  dougExamples: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "DougFeel",
+      ref: "DougExample",
     },
   ],
   bullets: [
