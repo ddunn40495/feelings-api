@@ -14,3 +14,7 @@ INSERT INTO examples(
      ( 6, 'Surprise feels like when it starts to rain on a sunny day.');
 
      SELECT * FROM examples;
+
+     SELECT * FROM emotions JOIN examples ON examples.emotion_id = emotions.emotion_id JOIN char_examples ON char_examples.emotion_id = emotions.emotion_id JOIN bullets ON bullets.emotion_id = emotions.emotion_id;
+
+          SELECT * FROM emotions JOIN examples ON examples.emotion_id = emotions.emotion_id JOIN char_examples ON char_examples.emotion_id = emotions.emotion_id JOIN bullets ON bullets.emotion_id = emotions.emotion_id WHERE emotions.emotion_id = 2;
