@@ -6,11 +6,14 @@ const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 const app = express();
 const port = process.env.PORT || 4000;
+const pool = require("./models/db");
 app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 require("dotenv").config();
+const cors = require("cors");
+app.use(cors());
 
 // =======================================
 //              DATABASE
