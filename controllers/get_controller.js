@@ -52,7 +52,7 @@ const format = require("pg-format");
 router.get("/all", async (req, res) => {
   try {
     let emotions = await pool.query(
-      "SELECT * FROM emotions JOIN examples ON examples.emotion_id = emotions.emotion_id JOIN char_examples ON char_examples.emotion_id = emotions.emotion_id JOIN bullets ON bullets.emotion_id = emotions.emotion_id"
+      "SELECT * FROM emotions JOIN examples ON examples.emotion_id = emotions.emotion_id JOIN bullets ON bullets.emotion_id = examples.emotion_id JOIN char_examples ON char_examples.emotion_id = bullets.emotion_id"
     );
     res.json(emotions);
   } catch (err) {
@@ -66,7 +66,7 @@ router.get("/all", async (req, res) => {
 router.get("/emotion/:emotionID", async (req, res) => {
   try {
     let emotion = await pool.query(
-      "SELECT * FROM emotions JOIN examples ON examples.emotion_id = emotions.emotion_id JOIN char_examples ON char_examples.emotion_id = emotions.emotion_id JOIN bullets ON bullets.emotion_id = emotions.emotion_id WHERE emotions.emotion_id = $1",
+      " SELECT * FROM emotions JOIN examples ON examples.emotion_id = emotions.emotion_id JOIN bullets ON bullets.emotion_id = examples.emotion_id JOIN char_examples ON char_examples.emotion_id = bullets.emotion_id WHERE emotions.emotion_id = $1",
       [req.params.emotionID]
     );
     res.json(emotion);
