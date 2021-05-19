@@ -1,5 +1,5 @@
 INSERT INTO char_examples(
-	 emotion_id, body)
+	 emotion_id, char_example_body)
 	VALUES (1, 'Doug feels fear when he takes a spelling test because words are hard.'),
     (1, 'Doug feels fear when he gets lost because he can not find home.'),
     (2, 'Doug feels angry when his sister takes his toys because he wants to keep playing.'),
