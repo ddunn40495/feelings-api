@@ -75,4 +75,46 @@ router.get("/emotion/:emotionID", async (req, res) => {
     res.send("500 Error");
   }
 });
+
+//Get Only Bullets for Single Emotion
+router.get("/bullets/:emotionID", async (req, res) => {
+  try {
+    let bullets = await pool.query(
+      "SELECT * FROM emotions JOIN bullets ON bullets.emotion_id = emotions.emotion_id WHERE emotions.emotion_id = $1",
+      [req.params.emotionID]
+    );
+    res.json(bullets);
+  } catch (err) {
+    console.log(err);
+    res.send("500 Error");
+  }
+});
+//Get Only Char Examples for Single Emotion
+
+router.get("/char/:emotionID", async (req, res) => {
+  try {
+    let examples = await pool.query(
+      "SELECT * FROM emotions JOIN char_examples ON char_examples.emotion_id = emotions.emotion_id WHERE emotions.emotion_id = $1",
+      [req.params.emotionID]
+    );
+    res.json(examples);
+  } catch (err) {
+    console.log(err);
+    res.send("500 Error");
+  }
+});
+
+//Get Only Examples for Single Emotion
+router.get("/examples/:emotionID", async (req, res) => {
+  try {
+    let examples = await pool.query(
+      "SELECT * FROM emotions JOIN examples ON examples.emotion_id = emotions.emotion_id WHERE emotions.emotion_id = $1",
+      [req.params.emotionID]
+    );
+    res.json(examples);
+  } catch (err) {
+    console.log(err);
+    res.send("500 Error");
+  }
+});
 module.exports = router;

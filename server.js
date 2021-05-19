@@ -54,6 +54,19 @@ app.use("/api", getController);
 app.get("/", (req, res) => {
   res.render("index.ejs");
 });
+
+//Bullets
+app.get("/bullets", (req, res) => {
+  res.render("bullets.ejs");
+});
+//Char Examples
+app.get("/char", (req, res) => {
+  res.render("char_examples.ejs");
+});
+//Examples
+app.get("/examples", (req, res) => {
+  res.render("examples.ejs");
+});
 // =======================================
 //              LISTENER
 // =======================================
